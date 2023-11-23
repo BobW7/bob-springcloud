@@ -1,0 +1,12 @@
+server:
+  port: 9001
+#连接池
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloudtest
+    username: root
+    password: 1234
+mybatis:
+  type-aliases-package: com.bob.user.pojo
+
