@@ -7,6 +7,11 @@ spring:
     url: jdbc:mysql://localhost:3306/springcloudtest
     username: root
     password: 1234
+  application:
+    name: user-service
 mybatis:
   type-aliases-package: com.bob.user.pojo
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
