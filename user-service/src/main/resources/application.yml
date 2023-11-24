@@ -15,3 +15,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    #更倾向于使用ip，而不是主机名
+    prefer-ip-address: true
+    #ip地址
+    ip-address: 127.0.0.1
