@@ -12,3 +12,7 @@ eureka:
     register-with-eureka: false
       #不拉取服务
     fetch-registry: false
+    #关闭自我保护模式（缺省为打开）
+  server:
+    enable-self-preservation: false
+    delta-retention-timer-interval-in-ms: 10000 #服务失效剔除间隔时间，默认60s
