@@ -7,6 +7,7 @@ eureka:
       defaultZone: http://127.0.0.1:10086/eureka
       #拉取服务地址列表的间隔时间
     registry-fetch-interval-seconds: 10
+#要拉取user-service服务
 user-service:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
@@ -16,4 +17,4 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 2000
+            timeoutInMilliseconds: 7000
