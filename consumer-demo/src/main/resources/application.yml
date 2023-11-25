@@ -29,3 +29,6 @@ ribbon:
   MaxAutoRetries: 0 # 当前服务器的重试次数
   MaxAutoRetriesNextServer: 0 # 重试多少次服务
   OkToRetryOnAllOperations: false # 是否对所有的请求方式都重试
+feign:
+  hystrix:
+    enabled: true #开启Feign的熔断功能
