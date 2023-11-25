@@ -1,6 +1,9 @@
 package com.bob.consumer.controller;
 
 import com.bob.consumer.pojo.User;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/consumer")
+@Slf4j
 public class ConsumerController {
 
     @Autowired
@@ -20,13 +24,14 @@ public class ConsumerController {
     private DiscoveryClient discoveryClient;
 
     @GetMapping("/{id}")
-    public User query(@PathVariable Long id) {
-        /*//通过restTemplate给提供服务的模块发送请求，并且将响应（JSON）反序列化为本模块的pojo
-        String url = "http://localhost:9001/user/" + id;
-        List<ServiceInstance> serviceInstances = discoveryClient.getInstances("user-service");
-        ServiceInstance serviceInstance = serviceInstances.get(0);
-        url = "http://"+serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/user/" + id;*/
+    @HystrixCommand
+    public String query(@PathVariable Long id) {
         String url = "http://user-service/user/" + id;
-        return restTemplate.getForObject(url, User.class);
+        return restTemplate.getForObject(url, String.class);
+    }
+
+    public String queryByIdFallBack(Long id){
+        log.error("查询用户信息：id:{}",id);
+        return "对不起，网络太过拥挤！";
     }
 }
