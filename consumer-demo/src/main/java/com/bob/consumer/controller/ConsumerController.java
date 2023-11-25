@@ -26,6 +26,7 @@ public class ConsumerController {
     private DiscoveryClient discoveryClient;
 
     @GetMapping("/{id}")
+    @HystrixCommand
     public String query(@PathVariable Long id) {
         String url = "http://user-service/user/" + id;
         return restTemplate.getForObject(url, String.class);
