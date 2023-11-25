@@ -18,3 +18,14 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 7000
+      circuitBreaker:
+        errorThresholdPrecentage: 50 #触发熔断错误比例阈值，默认为50%
+        sleepWindowInMilliseconds: 10000 # 熔断后休眠时长，默认5s
+        requestVolumeThreshold: 10 # 熔断触发最小请求次数，默认值是20
+
+ribbon:
+  ConnectionTimeout: 1000 # 连接超时时长
+  ReadTimeout: 2000 # 数据通信超时时长
+  MaxAutoRetries: 0 # 当前服务器的重试次数
+  MaxAutoRetriesNextServer: 0 # 重试多少次服务
+  OkToRetryOnAllOperations: false # 是否对所有的请求方式都重试
